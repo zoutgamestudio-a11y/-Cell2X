@@ -166,3 +166,15 @@ CellX2 is in the initial research phase.
 
 No end-to-end game execution has been independently
 verified by CellX2.
+
+## Reference Baseline
+
+- Project: ps3recomp
+- Repository: https://github.com/sp00nznet/ps3recomp
+- Reference commit: 39a36296511c445707adabcd312f0b740cfbd694
+- Status: Reference identified; commit contents not yet independently audited.
+- Purpose: Track upstream PPU/SPU recompilation tools, runtime requirements,
+  supported platforms, and existing tests.
+- CellX2 verification: No independent validation recorded yet.
+- Next action: Inspect the reference commit and identify a small,
+  reproducible test for CellX2.
