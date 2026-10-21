@@ -1,0 +1,30 @@
+{
+  "created": "2026-10-21",
+  "purpose": "Proposed corrected repository files; not automatically committed to GitHub",
+  "files": {
+    "README.md": {
+      "sha256": "f854d709d6cae8a79c0f0b5671a7d63e35adec531c348ee8dc17b1107b9b197a",
+      "bytes": 2965
+    },
+    "PROJECT_LEDGER.md": {
+      "sha256": "18fb40c9a72bfd06a0eafe9893611391e34f142059b1fa132ea688b808724ba8",
+      "bytes": 5263
+    },
+    "PACK_README.md": {
+      "sha256": "638efbf115772e0a531e5ca627a349475f0cd15806fa7c52787b93f495ef77e1",
+      "bytes": 1860
+    },
+    "docs/ARCHITECTURE.md": {
+      "sha256": "ac78d8ac7df9d06a908b1ee268251935f68dc86f8060b3360b3f9d1481bf0061",
+      "bytes": 2331
+    },
+    "research/PS3Recomp.md": {
+      "sha256": "f2ac460d21dc2061964fc34fb56cd422c5703d816f512f6f4014c304f28099d5",
+      "bytes": 2852
+    },
+    "UPLOAD_INSTRUCTIONS.md": {
+      "sha256": "e095da04c72be925f5c28da6ca05287175798d1253bc1007dd9fbf49b428e59c",
+      "bytes": 905
+    }
+  }
+}

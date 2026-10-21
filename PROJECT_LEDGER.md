@@ -1,180 +1,112 @@
 # CellX2 — Project Ledger
 
-## 1. Project Objective
+**Snapshot date:** 2026-10-21  
+**Status:** Initial research and organization
 
-CellX2 investigates the feasibility of recompiling
-PlayStation 3 software for execution on other platforms.
+## 1. Project objective
 
-The research focuses on:
-- PowerPC PPU instruction translation.
-- SPU instruction translation.
-- Runtime and operating system dependencies.
-- Memory and execution semantics.
-- Graphics, audio, and input dependencies.
-- Cross-platform execution feasibility.
+CellX2 investigates the feasibility of recompiling PlayStation 3 software. The current phase is limited to architecture research, source auditing, and defining reproducible tests. No end-to-end execution capability is claimed.
 
-## 2. Evidence Classification
+Research areas:
+- PowerPC PPU instruction semantics and translation.
+- SPU instruction semantics and translation.
+- Runtime and operating-system dependencies.
+- Memory, control-flow, and execution semantics.
+- Graphics, audio, input, and lifecycle dependencies.
 
-Every significant claim must use one of these categories.
+## 2. Evidence classification
 
-### DOCUMENTED
-Information found in an identified source.
-This does not mean CellX2 independently verified it.
+- **DOCUMENTED** — found in an identified source and pinned revision; not independently verified by CellX2.
+- **INDEPENDENTLY TESTED** — executed by CellX2 with recorded inputs, outputs, environment, and result.
+- **SEMANTICALLY VERIFIED** — compared with an independent architectural specification or oracle, with relevant state checked.
+- **INTEGRATION VERIFIED** — multiple components exercised together reproducibly by CellX2.
+- **UNVERIFIED** — hypothesis or claim that still requires evidence.
 
-### INDEPENDENTLY TESTED
-A test executed by the CellX2 team with recorded inputs
-and outputs.
+These categories are not interchangeable. Source inspection and upstream test reports do not count as CellX2 execution results.
 
-### SEMANTICALLY VERIFIED
-An implementation was compared against an independent
-reference or architectural specification.
+## 3. Current project status
 
-### INTEGRATION VERIFIED
-Multiple components were tested together in a reproducible
-execution environment.
+### Established
+- Repository and initial project description exist.
+- A research baseline has been recorded for PS3Recomp and RPCS3 at pinned revisions.
+- Principal PPU/SPU source paths and relevant test/documentation areas have been inventoried.
+- Initial PPU/SPU research notes and test specifications exist.
+- An evidence ledger distinguishes reference-project claims from CellX2 results.
 
-### UNVERIFIED
-A hypothesis or claim that still requires evidence.
-
-## 3. Current Project Status
-
-Status: Initial research and organization.
-
-Confirmed project work:
-- Repository created.
-- Initial README drafted.
-- Research plan being established.
-
-Not yet established:
-- An independently tested PPU instruction translator.
-- An independently tested SPU instruction translator.
+### Not established by CellX2
+- An independently implemented or tested PPU translator.
+- An independently implemented or tested SPU translator.
 - A working CellX2 runtime.
-- Successful execution of a complete PS3 game.
-- Compatibility with PlayStation 4.
+- Semantic conformance across either instruction set.
+- Successful execution of a real PS3 program or complete game.
 
-## 4. Reference Projects
+## 4. Pinned reference snapshots
 
-### PS3Recomp
-Purpose: Primary reference for static recompilation
-of PlayStation 3 software.
+| Project | Revision | Role |
+|---|---|---|
+| PS3Recomp | `749182eebb936f086a007f63e1c7d853f3cf708a` | Primary static-recompilation, lifter, runtime, and test reference |
+| RPCS3 | `4024ea31e049f3205ae406eb3f37fe7625e1bc98` | Supporting behavioral and subsystem reference |
 
-Status: DOCUMENTED.
+The older PS3Recomp commit `39a36296511c445707adabcd312f0b740cfbd694` is a parent of the pinned revision, not the current primary baseline. Findings must identify the exact revision they describe. Do not use a moving branch as provenance for a technical claim.
 
-Required work:
-- Record the exact commit examined.
-- Map existing components.
-- Review available tests.
-- Identify documented limitations.
-- Reproduce selected tests where feasible.
-
-### RPCS3
-Purpose: Supporting reference for PS3 execution behavior.
-
-Status: DOCUMENTED.
-
-Required work:
-- Identify relevant implementation files.
-- Compare selected behaviors against independent
-  architectural documentation.
-- Record disagreements and unresolved questions.
-
-### OpenOrbis PS4 Toolchain
-Purpose: Reference for PS4 homebrew development
-and target-platform constraints.
-
-Status: DOCUMENTED.
-
-Important limitation:
-A PS4 homebrew toolchain is not itself a PS3
-static recompiler.
-
-## 5. Research Work Packages
+## 5. Research work packages
 
 ### A — PPU
-- Instruction semantics.
-- Registers and condition state.
-- Branches and function calls.
-- Memory access and endianness.
-- Floating-point and vector instructions.
+- Instruction encoding and semantics.
+- Registers and condition state, including CR/XER.
+- Branches, calls, and link/count behavior.
+- Memory access, endianness, and reservations.
+- Floating-point and vector behavior.
 
 ### B — SPU
-- Instruction decoding.
-- Vector semantics.
-- Local store.
+- Instruction decoding and operand fields.
+- Vector and lane semantics.
+- Local store and control flow.
 - Channels and mailboxes.
-- DMA and synchronization.
+- MFC/DMA, tags, events, and synchronization.
 
-### C — Runtime
-- Memory model.
-- System calls.
-- Threading and synchronization.
-- Module loading.
-- Host and guest ABI boundaries.
+### C — Runtime and OS
+- Address space and memory model.
+- System calls and imports.
+- Threads and synchronization.
+- Module loading, relocations, and TLS.
+- Host/guest ABI boundaries and lifecycle.
 
-### D — Hardware-Dependent Subsystems
-- RSX graphics.
-- Audio.
-- Input.
-- Timing and synchronization.
+### D — Hardware-dependent subsystems
+- Graphics, audio, input, timing, and synchronization.
+- Requirements must be derived from a minimal test rather than assumed in advance.
 
-### E — Target Platform
-- Host operating system.
-- Compiler and ABI.
-- Runtime dependencies.
-- PS4 feasibility assessment.
+## 6. Milestones
 
-## 6. Current Milestones
+- [x] Create repository and draft initial project description.
+- [x] Record pinned reference commits.
+- [x] Begin a component inventory of principal PPU/SPU paths.
+- [x] Draft initial PPU/SPU research notes and test specifications.
+- [ ] Finish ISA-backed expected vectors for the first SPU tests.
+- [ ] Execute and record the first reproducible CellX2 test.
+- [ ] Establish a minimal test harness and synthetic program.
+- [ ] Map runtime dependencies based on observed test requirements.
 
-- [x] Create repository.
-- [x] Draft initial project description.
-- [ ] Record reference repository commits.
-- [ ] Build a component inventory.
-- [ ] Define the first independent PPU tests.
-- [ ] Execute and record the first reproducible test.
-- [ ] Define initial SPU tests.
-- [ ] Assess runtime dependencies.
-- [ ] Evaluate target-platform feasibility.
+A drafted test specification is not a completed test run. The component inventory is broad but does not represent a line-by-line audit of every reference file.
 
-## 7. Evidence Rules
+## 7. Evidence rules
 
-Every test record should include:
-- Test identifier.
-- Date.
-- Source revision.
-- Input.
-- Expected result.
-- Actual result.
-- Test environment.
-- Pass or fail.
-- Relevant logs.
-- Known limitations.
+Every executed test must record:
+- Stable test identifier and test/tool revision.
+- Raw input bytes or opcode and initial architectural state.
+- Expected decode and expected final state.
+- Exact architectural source for the expected result.
+- Secondary comparison source and pinned revision, if used.
+- Build and execution commands, environment, and exit code.
+- Actual output, relevant logs, and known limitations.
+- Artifact hashes where practical.
 
-A generated source file is not proof of semantic correctness.
+A generated source file is not proof of semantic correctness. A successful build is not proof of correct execution. A successful startup is not proof that a complete program works.
 
-A successful build is not proof of correct execution.
+## 8. Decision log
 
-A successful startup is not proof that a complete game works.
+No architectural decision is final until its rationale, alternatives, and supporting evidence are recorded. Unresolved questions must remain explicit and must not be relabeled as confirmed defects.
 
-## 8. Decision Log
+## 9. Current conclusion
 
-No architectural decision is final until its rationale,
-alternatives, and evidence have been recorded.
-
-## 9. Current Conclusion
-
-CellX2 is in the initial research phase.
-
-No end-to-end game execution has been independently
-verified by CellX2.
-
-## Reference Baseline
-
-- Project: ps3recomp
-- Repository: https://github.com/sp00nznet/ps3recomp
-- Reference commit: 39a36296511c445707adabcd312f0b740cfbd694
-- Status: Reference identified; commit contents not yet independently audited.
-- Purpose: Track upstream PPU/SPU recompilation tools, runtime requirements,
-  supported platforms, and existing tests.
-- CellX2 verification: No independent validation recorded yet.
-- Next action: Inspect the reference commit and identify a small,
-  reproducible test for CellX2.
+CellX2 remains in the initial research and organization phase. The next priority is to complete small, ISA-backed SPU test vectors, then execute the first reproducible test when a suitable environment is available. No CellX2 end-to-end execution has been independently verified.
