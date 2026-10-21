@@ -2,16 +2,19 @@
 
 ## 1. Purpose
 
-PS3Recomp is the primary reference project for
-investigating static recompilation of PlayStation 3 software.
+PS3Recomp is the primary reference project for investigating static recompilation of PlayStation 3 software.
 
-Official repository:
-https://github.com/sp00nznet/ps3recomp
+Official repository: https://github.com/sp00nznet/ps3recomp
 
-## 2. Initial Observations
+## 2. Pinned revision
+
+Primary reviewed snapshot: `749182eebb936f086a007f63e1c7d853f3cf708a`.
+
+The older commit `39a36296511c445707adabcd312f0b740cfbd694` is an ancestor of that snapshot. Findings must identify the precise commit inspected; do not combine claims from different revisions without saying so.
+
+## 3. Initial observations
 
 The project's documentation describes components for:
-
 - ELF and related executable-format analysis.
 - PPU instruction disassembly.
 - PPU-to-C/C++ code generation.
@@ -20,14 +23,11 @@ The project's documentation describes components for:
 - System-service implementations and stubs.
 - Graphics-related runtime components.
 
-These observations describe the reference project.
-They do not establish that every component is complete
-or correct for every game.
+These observations describe the reference project. They do not establish that every component is complete or correct for every program.
 
-## 3. PPU Research
+## 4. PPU research
 
 Questions to investigate:
-
 - Which PPU instructions are supported?
 - How are guest registers represented?
 - How are branches and indirect calls translated?
@@ -35,10 +35,9 @@ Questions to investigate:
 - How are imports and system calls handled?
 - Which execution dependencies remain incomplete?
 
-## 4. SPU Research
+## 5. SPU research
 
 Questions to investigate:
-
 - Which SPU instructions are supported?
 - How are vector operations represented?
 - How is local store modeled?
@@ -46,40 +45,34 @@ Questions to investigate:
 - How are DMA operations modeled?
 - Which synchronization behaviors require additional work?
 
-## 5. Runtime Research
+## 6. Runtime research
 
 Questions to investigate:
-
 - How is guest memory addressed?
 - How are threads and synchronization handled?
 - How are system services resolved?
 - How are module dependencies represented?
-- Which host operating system assumptions exist?
+- Which host operating-system assumptions exist?
 
-## 6. Verification Plan
+## 7. Verification plan
 
 1. Record the exact upstream commit.
-2. Read the relevant documentation at that commit.
+2. Read relevant documentation at that commit.
 3. Map documented features to source files and tests.
 4. Identify explicit limitations.
 5. Select small tests that can be reproduced independently.
-6. Record results without assuming that upstream claims
-   are automatically verified by CellX2.
+6. Record results without assuming that upstream claims are automatically verified by CellX2.
 
-## 7. Current Status
+## 8. Current status
 
-DOCUMENTED:
-The upstream repository describes a static recompilation
-pipeline and associated runtime components.
+**DOCUMENTED:** The upstream repository describes a static recompilation pipeline and associated runtime components.
 
-UNVERIFIED BY CELLX2:
-- The current build status on our environment.
+**UNVERIFIED BY CELLX2:**
 - Independent reproduction of upstream tests.
 - Semantic correctness of selected instructions.
 - Successful execution of a complete commercial game.
-- Compatibility with PlayStation 4.
+- Broad compatibility beyond the currently studied test scope.
 
-## 8. Next Action
+## 9. Next action
 
-Record the exact upstream commit and begin a component
-inventory before deciding whether to implement new code.
+Continue the component inventory at the pinned revision, complete ISA-backed expected vectors for selected SPU instructions, and choose a small reproducible test before considering implementation scope.
