@@ -2,13 +2,9 @@
 
 ## 1. Scope
 
-CellX2 investigates the components required to translate
-PlayStation 3 software into native host code.
+CellX2 investigates the components required to translate PlayStation 3 software into native host code.
 
-The initial objective is to establish a correct and
-testable execution path for a small program.
-
-Full-game support is a later objective.
+The initial objective is to establish a correct and testable execution path for a small program. Full-program support is a later objective and must be supported by evidence.
 
 ## 2. Conceptual Pipeline
 
@@ -71,33 +67,24 @@ The runtime work package covers:
 
 ## 6. Graphics and Other Subsystems
 
-Graphics, audio, and input may require separate
-implementations or compatibility layers.
+Graphics, audio, and input may require separate implementations or compatibility layers.
 
-Their requirements must be established from the selected
-test program rather than assumed in advance.
+Their requirements must be established from the selected test program rather than assumed in advance.
 
-## 7. Host and Target Platforms
+## 7. Execution Environment
 
-The first practical target should be a host environment
-where tests can be built, executed, and debugged.
-
-PlayStation 4 compatibility is a separate research
-question and must not be inferred from successful
-execution on a PC.
+The first practical target should be a host environment where tests can be built, executed, and debugged reproducibly. Broader platform feasibility is deferred until instruction-level and minimal-program experiments provide evidence.
 
 ## 8. Design Rules
 
 - Prefer small, independently testable components.
 - Keep architectural semantics separate from host-specific code.
 - Record assumptions and known limitations.
-- Avoid duplicating existing components without evidence
-  that replacement is necessary.
+- Avoid duplicating existing components without evidence that replacement is necessary.
 - Do not claim compatibility based solely on successful compilation.
 
 ## 9. Current Implementation Status
 
-All architecture descriptions in this document are
-research plans unless explicitly marked otherwise.
+All architecture descriptions in this document are research plans unless explicitly marked otherwise.
 
 No complete CellX2 execution pipeline has been verified.
